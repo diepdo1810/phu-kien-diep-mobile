@@ -265,7 +265,7 @@ export const products = [
 export const reviews = [
   {
     id: 1,
-    customerName: "Nguyễn Văn A",
+    customerName: "Đỗ Hải Phong",
     avatar: "/images/avatars/avatar-1.jpg",
     rating: 5,
     date: "15/03/2023",
@@ -274,7 +274,7 @@ export const reviews = [
   },
   {
     id: 2,
-    customerName: "Trần Thị B",
+    customerName: "Đỗ Hải Vy",
     avatar: "/images/avatars/avatar-2.jpg",
     rating: 4,
     date: "22/04/2023",
@@ -283,7 +283,7 @@ export const reviews = [
   },
   {
     id: 3,
-    customerName: "Lê Văn C",
+    customerName: "Lê Thị Kiều Trinh",
     avatar: "/images/avatars/avatar-3.jpg",
     rating: 5,
     date: "05/05/2023",
