@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Filter, SlidersHorizontal, GridIcon, List, ChevronDown } from 'lucide-react';
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
 import ProductCard from '@/components/ui/ProductCard';
 import FilterSidebar from '@/components/ui/FilterSidebar';
 import { products, categories, brands } from '@/lib/data';
@@ -127,6 +129,8 @@ const Products = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
+      <Navbar />
+      
       <main className="flex-grow pt-16">
         {/* Category Header */}
         <div className="bg-secondary">
@@ -275,6 +279,8 @@ const Products = () => {
           className="lg:hidden"
         />
       </main>
+
+      <Footer />
     </div>
   );
 };
