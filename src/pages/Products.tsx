@@ -1,9 +1,7 @@
 
 import { useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Filter, SlidersHorizontal, GridIcon, List, ChevronDown } from 'lucide-react';
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
 import ProductCard from '@/components/ui/ProductCard';
 import FilterSidebar from '@/components/ui/FilterSidebar';
 import { products, categories, brands } from '@/lib/data';
@@ -16,7 +14,6 @@ interface FilterState {
 
 const Products = () => {
   const { categorySlug } = useParams<{ categorySlug: string }>();
-  const location = useLocation();
   const [isLoading, setIsLoading] = useState(true);
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -129,9 +126,7 @@ const Products = () => {
     (activeFilters.priceRange[0] > 0 || activeFilters.priceRange[1] < 10000000 ? 1 : 0);
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
-
+    <div className="flex flex-col min-h-screen bg-gray-50">
       <main className="flex-grow pt-16">
         {/* Category Header */}
         <div className="bg-secondary">
@@ -150,8 +145,8 @@ const Products = () => {
             {/* Desktop Filter Sidebar */}
             <div className="hidden lg:block w-64 flex-shrink-0">
               <FilterSidebar
-                isOpen={isFilterOpen}
-                onClose={() => setIsFilterOpen(false)}
+                isOpen={true}
+                onClose={() => {}}
                 onFilterChange={handleFilterChange}
               />
             </div>
@@ -280,8 +275,6 @@ const Products = () => {
           className="lg:hidden"
         />
       </main>
-
-      <Footer />
     </div>
   );
 };
