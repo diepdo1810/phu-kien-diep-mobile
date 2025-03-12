@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { X, Filter, ChevronDown } from 'lucide-react';
+import { X, Filter, ChevronDown, Star } from 'lucide-react';
 import { brands } from '@/lib/data';
 
 interface FilterProps {

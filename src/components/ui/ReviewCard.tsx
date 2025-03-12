@@ -57,14 +57,16 @@ const ReviewCard = ({ customerName, avatar, rating, date, text, index = 0 }: Rev
       </div>
       <p className="text-muted-foreground text-sm">{text}</p>
 
-      <style jsx>{`
-        @keyframes slideUp {
-          to {
-            opacity: 1;
-            transform: translateY(0);
+      <style>
+        {`
+          @keyframes slideUp {
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
           }
-        }
-      `}</style>
+        `}
+      </style>
     </div>
   );
 };

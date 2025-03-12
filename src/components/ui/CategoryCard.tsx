@@ -56,14 +56,16 @@ const CategoryCard = ({ id, name, slug, image, description, index = 0 }: Categor
         </div>
       </div>
       
-      <style jsx>{`
-        @keyframes slideUp {
-          to {
-            opacity: 1;
-            transform: translateY(0);
+      <style>
+        {`
+          @keyframes slideUp {
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
           }
-        }
-      `}</style>
+        `}
+      </style>
     </Link>
   );
 };
