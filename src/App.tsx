@@ -8,6 +8,7 @@ import { ProductSelectionProvider } from "@/hooks/useProductSelection";
 import Index from "./pages/Index";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
+import Certifications from "./pages/Certifications";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
             <Route path="/products" element={<Products />} />
             <Route path="/products/:categorySlug" element={<Products />} />
             <Route path="/product/:slug" element={<ProductDetail />} />
+            <Route path="/certifications" element={<Certifications />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
