@@ -18,6 +18,7 @@ interface ProductCardProps {
   featured?: boolean;
   index?: number;
   selectable?: boolean;
+  children?: React.ReactNode;
 }
 
 const formatPrice = (price: number) => {
@@ -41,6 +42,7 @@ const ProductCard = ({
   featured = false,
   index = 0,
   selectable = false,
+  children,
 }: ProductCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -100,7 +102,7 @@ const ProductCard = ({
         </div>
       )}
 
-      {featured && (
+      {featured && !children && (
         <div className="absolute top-3 right-3 z-10 bg-primary text-white text-xs font-medium px-2.5 py-1 rounded">
           Nổi bật
         </div>
@@ -117,6 +119,8 @@ const ProductCard = ({
           />
         </div>
       )}
+      
+      {children}
 
       <div className="aspect-square bg-secondary relative overflow-hidden product-img-wrapper">
         <img

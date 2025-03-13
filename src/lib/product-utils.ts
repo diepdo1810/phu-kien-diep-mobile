@@ -53,3 +53,26 @@ export const generateShareLinks = (url: string, title: string) => {
     copyLink: url
   };
 };
+
+// New statistics functions
+export const getMostViewedProducts = (limit = 4) => {
+  return [...products]
+    .sort((a, b) => (b.viewCount || 0) - (a.viewCount || 0))
+    .slice(0, limit);
+};
+
+export const getNewestProducts = (limit = 4) => {
+  return [...products]
+    .sort((a, b) => {
+      const dateA = a.dateAdded ? new Date(a.dateAdded).getTime() : 0;
+      const dateB = b.dateAdded ? new Date(b.dateAdded).getTime() : 0;
+      return dateB - dateA;
+    })
+    .slice(0, limit);
+};
+
+export const getBestSellingProducts = (limit = 4) => {
+  return [...products]
+    .sort((a, b) => (b.salesCount || 0) - (a.salesCount || 0))
+    .slice(0, limit);
+};

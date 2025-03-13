@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import CategoryCard from '../components/ui/CategoryCard';
 import ProductCard from '../components/ui/ProductCard';
 import ReviewCard from '../components/ui/ReviewCard';
+import ProductStatistics from '../components/ui/ProductStatistics';
 import { categories, products, reviews } from '@/lib/data';
 
 const Index = () => {
@@ -42,6 +43,13 @@ const Index = () => {
         
         {/* Decorative elements */}
         <div className="absolute bottom-0 left-0 w-full h-16 bg-gray-50 clip-slant" />
+      </section>
+
+      {/* Product Statistics Section */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto">
+          <ProductStatistics />
+        </div>
       </section>
 
       {/* Categories Section */}

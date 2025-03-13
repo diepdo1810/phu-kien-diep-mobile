@@ -1,3 +1,4 @@
+
 // Mock data for the eCommerce website
 
 // Product Categories
@@ -89,6 +90,9 @@ export const products = [
     reviewCount: 152,
     stock: 100,
     featured: true,
+    viewCount: 1245,
+    salesCount: 78,
+    dateAdded: "2023-10-15",
     description: "Ốp lưng silicone trong suốt bảo vệ iPhone 15 Pro Max từ va đập và trầy xước. Thiết kế mỏng, vừa vặn, toàn bộ cạnh và nút bấm, không ảnh hưởng đến thao tác sử dụng điện thoại hàng ngày.",
     specifications: [
       { name: "Chất liệu", value: "Silicone" },
@@ -122,6 +126,9 @@ export const products = [
     reviewCount: 325,
     stock: 50,
     featured: true,
+    viewCount: 2350,
+    salesCount: 156,
+    dateAdded: "2023-11-05",
     description: "AirPods Pro 2 với công nghệ Chống ồn Chủ động nâng cao, Xuyên âm thông minh và chip H2 mang đến âm thanh vượt trội, pin dùng tới 6 giờ chỉ với một lần sạc.",
     specifications: [
       { name: "Thời gian sử dụng", value: "Lên đến 6 giờ" },
@@ -155,6 +162,9 @@ export const products = [
     reviewCount: 214,
     stock: 75,
     featured: true,
+    viewCount: 1820,
+    salesCount: 143,
+    dateAdded: "2023-09-20",
     description: "Sạc dự phòng Anker PowerCore với dung lượng lớn 20000mAh, công nghệ sạc nhanh 18W, hỗ trợ sạc nhanh cho iPhone và thiết bị Android.",
     specifications: [
       { name: "Dung lượng", value: "20000mAh" },
@@ -188,6 +198,9 @@ export const products = [
     reviewCount: 98,
     stock: 120,
     featured: false,
+    viewCount: 980,
+    salesCount: 67,
+    dateAdded: "2023-12-01",
     description: "Cáp sạc nhanh Baseus với công nghệ Power Delivery, hỗ trợ sạc siêu nhanh cho iPhone với công suất lên đến 30W và truyền dữ liệu tốc độ cao.",
     specifications: [
       { name: "Chiều dài", value: "1.2m" },
@@ -221,6 +234,9 @@ export const products = [
     reviewCount: 76,
     stock: 200,
     featured: false,
+    viewCount: 750,
+    salesCount: 58,
+    dateAdded: "2023-11-15",
     description: "Miếng dán cường lực Samsung Galaxy S23 Ultra với độ cứng 9H, chống trầy xước, chống bám vân tay và chống mỏi mắt với công nghệ lọc ánh sáng xanh.",
     specifications: [
       { name: "Độ cứng", value: "9H" },
@@ -254,6 +270,9 @@ export const products = [
     reviewCount: 132,
     stock: 85,
     featured: true,
+    viewCount: 1567,
+    salesCount: 112,
+    dateAdded: "2023-08-10",
     description: "Tai nghe chụp tai JBL Tune 510BT với âm thanh JBL Pure Bass, kết nối Bluetooth 5.0, thời gian sử dụng lên đến 40 giờ và khả năng sạc nhanh.",
     specifications: [
       { name: "Thời gian sử dụng", value: "40 giờ" },
@@ -287,6 +306,9 @@ export const products = [
     reviewCount: 58,
     stock: 60,
     featured: false,
+    viewCount: 890,
+    salesCount: 45,
+    dateAdded: "2024-01-20",
     description: "Ốp lưng thiết kế dành riêng cho Samsung Galaxy Z Flip 5 với chất liệu cao cấp, bảo vệ máy khỏi trầy xước và va đập nhẹ, không làm ảnh hưởng đến chức năng gập của máy.",
     specifications: [
       { name: "Chất liệu", value: "PC + TPU" },
@@ -320,6 +342,9 @@ export const products = [
     reviewCount: 142,
     stock: 95,
     featured: true,
+    viewCount: 2100,
+    salesCount: 135,
+    dateAdded: "2023-10-05",
     description: "Sạc nhanh Xiaomi 65W GaN với công nghệ Nitride Gallium, nhỏ gọn và hiệu suất cao, hỗ trợ sạc nhanh cho điện thoại, máy tính bảng và laptop.",
     specifications: [
       { name: "Công suất", value: "65W" },
