@@ -1,4 +1,3 @@
-
 // Mock data for the eCommerce website
 
 // Product Categories
@@ -57,6 +56,13 @@ export const brands = [
   { id: 6, name: "JBL" },
 ];
 
+// Wholesale Price Tiers
+export interface WholesaleTier {
+  minQuantity: number;
+  maxQuantity: number | null;
+  price: number;
+}
+
 // Products
 export const products = [
   {
@@ -65,9 +71,16 @@ export const products = [
     slug: "op-lung-iphone-15-pro-max-silicone-trong-suot",
     categoryId: 1,
     brandId: 1,
+    sku: "OL-IP15PM-01",
     price: 250000,
     wholesalePrice: 180000,
     discount: 10,
+    wholesaleTiers: [
+      { minQuantity: 10, maxQuantity: 50, price: 180000 },
+      { minQuantity: 51, maxQuantity: 100, price: 170000 },
+      { minQuantity: 101, maxQuantity: null, price: 160000 }
+    ],
+    minWholesaleQuantity: 10,
     images: [
       "https://images.unsplash.com/photo-1592954536775-3144a9c31848?q=80&w=1000",
       "https://images.unsplash.com/photo-1680320282066-8e4971cd4fb6?q=80&w=1000",
@@ -83,6 +96,7 @@ export const products = [
       { name: "Tương thích", value: "iPhone 15 Pro Max" },
       { name: "Tính năng đặc biệt", value: "Chống sốc" },
     ],
+    warranty: "Bảo hành 1 tháng cho các lỗi sản xuất",
   },
   {
     id: 2,
@@ -90,9 +104,16 @@ export const products = [
     slug: "tai-nghe-bluetooth-apple-airpods-pro-2",
     categoryId: 2,
     brandId: 1,
+    sku: "AP-PRO2-01",
     price: 5990000,
     wholesalePrice: 5500000,
     discount: 5,
+    wholesaleTiers: [
+      { minQuantity: 10, maxQuantity: 50, price: 5500000 },
+      { minQuantity: 51, maxQuantity: 100, price: 5300000 },
+      { minQuantity: 101, maxQuantity: null, price: 5100000 }
+    ],
+    minWholesaleQuantity: 10,
     images: [
       "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?q=80&w=1000",
       "https://images.unsplash.com/photo-1588423771073-b8903fbb85b5?q=80&w=1000",
@@ -108,6 +129,7 @@ export const products = [
       { name: "Tính năng đặc biệt", value: "Chống ồn chủ động, Xuyên âm" },
       { name: "Kết nối", value: "Bluetooth 5.3" },
     ],
+    warranty: "Bảo hành chính hãng 12 tháng",
   },
   {
     id: 3,
@@ -115,9 +137,16 @@ export const products = [
     slug: "sac-du-phong-anker-powercore-20000mah",
     categoryId: 3,
     brandId: 4,
+    sku: "ANKER-PC20K-01",
     price: 990000,
     wholesalePrice: 850000,
     discount: 15,
+    wholesaleTiers: [
+      { minQuantity: 10, maxQuantity: 50, price: 850000 },
+      { minQuantity: 51, maxQuantity: 100, price: 830000 },
+      { minQuantity: 101, maxQuantity: null, price: 800000 }
+    ],
+    minWholesaleQuantity: 10,
     images: [
       "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?q=80&w=1000",
       "https://images.unsplash.com/photo-1583863788633-e27a12b5ce5f?q=80&w=1000",
@@ -133,6 +162,7 @@ export const products = [
       { name: "Đầu ra", value: "USB-A (5V/3A, 9V/2A, 12V/1.5A)" },
       { name: "Công nghệ", value: "PowerIQ, VoltageBoost" },
     ],
+    warranty: "Bảo hành chính hãng 18 tháng",
   },
   {
     id: 4,
@@ -140,9 +170,16 @@ export const products = [
     slug: "cap-sac-nhanh-baseus-usb-c-to-lightning-100w",
     categoryId: 4,
     brandId: 5,
+    sku: "BS-CL100W-01",
     price: 290000,
     wholesalePrice: 220000,
     discount: 0,
+    wholesaleTiers: [
+      { minQuantity: 10, maxQuantity: 50, price: 220000 },
+      { minQuantity: 51, maxQuantity: 100, price: 200000 },
+      { minQuantity: 101, maxQuantity: null, price: 190000 }
+    ],
+    minWholesaleQuantity: 10,
     images: [
       "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?q=80&w=1000",
       "https://images.unsplash.com/photo-1661347334008-da5783be895c?q=80&w=1000",
@@ -158,6 +195,7 @@ export const products = [
       { name: "Chuẩn sạc", value: "PD 3.0, QC 4.0" },
       { name: "Tốc độ truyền dữ liệu", value: "480Mbps" },
     ],
+    warranty: "Bảo hành 6 tháng cho lỗi phần cứng",
   },
   {
     id: 5,
@@ -165,9 +203,16 @@ export const products = [
     slug: "mieng-dan-cuong-luc-samsung-galaxy-s23-ultra",
     categoryId: 5,
     brandId: 2,
+    sku: "CL-SS-S23U-01",
     price: 250000,
     wholesalePrice: 180000,
     discount: 20,
+    wholesaleTiers: [
+      { minQuantity: 10, maxQuantity: 50, price: 180000 },
+      { minQuantity: 51, maxQuantity: 100, price: 160000 },
+      { minQuantity: 101, maxQuantity: null, price: 150000 }
+    ],
+    minWholesaleQuantity: 10,
     images: [
       "https://images.unsplash.com/photo-1616160953762-23afc761534c?q=80&w=1000",
       "https://images.unsplash.com/photo-1613746203812-717e6e5c9c3b?q=80&w=1000",
@@ -183,6 +228,7 @@ export const products = [
       { name: "Tính năng đặc biệt", value: "Chống bám vân tay, Lọc ánh sáng xanh" },
       { name: "Độ trong suốt", value: "99.9%" },
     ],
+    warranty: "Bảo hành 1 tháng đổi mới",
   },
   {
     id: 6,
@@ -190,9 +236,16 @@ export const products = [
     slug: "tai-nghe-bluetooth-jbl-tune-510bt",
     categoryId: 2,
     brandId: 6,
+    sku: "JBL-T510BT-01",
     price: 1290000,
     wholesalePrice: 1100000,
     discount: 25,
+    wholesaleTiers: [
+      { minQuantity: 10, maxQuantity: 50, price: 1100000 },
+      { minQuantity: 51, maxQuantity: 100, price: 1050000 },
+      { minQuantity: 101, maxQuantity: null, price: 990000 }
+    ],
+    minWholesaleQuantity: 10,
     images: [
       "https://images.unsplash.com/photo-1546435770-a3e426bf472b?q=80&w=1000",
       "https://images.unsplash.com/photo-1528575950036-63c4853d3f6f?q=80&w=1000",
@@ -208,6 +261,7 @@ export const products = [
       { name: "Kết nối", value: "Bluetooth 5.0" },
       { name: "Trọng lượng", value: "160g" },
     ],
+    warranty: "Bảo hành chính hãng 12 tháng",
   },
   {
     id: 7,
@@ -215,9 +269,16 @@ export const products = [
     slug: "op-lung-samsung-galaxy-z-flip-5",
     categoryId: 1,
     brandId: 2,
+    sku: "OL-SSF5-01",
     price: 350000,
     wholesalePrice: 280000,
     discount: 0,
+    wholesaleTiers: [
+      { minQuantity: 10, maxQuantity: 50, price: 280000 },
+      { minQuantity: 51, maxQuantity: 100, price: 260000 },
+      { minQuantity: 101, maxQuantity: null, price: 240000 }
+    ],
+    minWholesaleQuantity: 10,
     images: [
       "https://images.unsplash.com/photo-1600086827875-a63b68548250?q=80&w=1000",
       "https://images.unsplash.com/photo-1613746260436-5a329468be46?q=80&w=1000",
@@ -233,6 +294,7 @@ export const products = [
       { name: "Tương thích", value: "Samsung Galaxy Z Flip 5" },
       { name: "Tính năng đặc biệt", value: "Chống sốc, thiết kế mỏng" },
     ],
+    warranty: "Bảo hành 1 tháng đổi mới",
   },
   {
     id: 8,
@@ -240,9 +302,16 @@ export const products = [
     slug: "sac-nhanh-xiaomi-65w-gan",
     categoryId: 4,
     brandId: 3,
+    sku: "XM-SC65W-01",
     price: 690000,
     wholesalePrice: 550000,
     discount: 10,
+    wholesaleTiers: [
+      { minQuantity: 10, maxQuantity: 50, price: 550000 },
+      { minQuantity: 51, maxQuantity: 100, price: 520000 },
+      { minQuantity: 101, maxQuantity: null, price: 500000 }
+    ],
+    minWholesaleQuantity: 10,
     images: [
       "https://images.unsplash.com/photo-1606293459339-21457343204b?q=80&w=1000",
       "https://images.unsplash.com/photo-1659307262208-ebe4726a2db7?q=80&w=1000",
@@ -258,6 +327,7 @@ export const products = [
       { name: "Chuẩn sạc", value: "PD 3.0, QC 4+" },
       { name: "Kích thước", value: "50 x 50 x 30mm" },
     ],
+    warranty: "Bảo hành chính hãng 18 tháng",
   },
 ];
 
@@ -346,4 +416,11 @@ export const storeInfo = {
     youtube: "https://youtube.com/techaccessories",
     tiktok: "https://tiktok.com/@techaccessories",
   },
+};
+
+// Zalo Information
+export const zaloInfo = {
+  phoneNumber: "0901234567",
+  displayName: "TechAccessories Shop",
+  shareMessage: "Xem sản phẩm này tại TechAccessories: "
 };
