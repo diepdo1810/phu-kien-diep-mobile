@@ -1,5 +1,5 @@
 
-import { LogIn } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 import { zaloInfo } from '@/lib/data';
 
 interface ZaloContactProps {
@@ -23,7 +23,7 @@ const ZaloContact = ({ productName, productUrl }: ZaloContactProps) => {
       rel="noopener noreferrer"
       className="flex items-center justify-center gap-2 w-full bg-[#0068ff] hover:bg-[#0054cc] text-white font-medium py-3 rounded-lg transition-colors duration-200"
     >
-      <LogIn className="h-5 w-5" />
+      <MessageCircle className="h-5 w-5" />
       <span>Liên hệ qua Zalo</span>
     </a>
   );

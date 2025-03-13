@@ -1,10 +1,10 @@
-
 import { useEffect, useState } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import { 
-  ShoppingBag, Package, Info, FileText, Award, ChevronRight, Star, AlertCircle
+  ShoppingBag, Package, Info, FileText, Award, ChevronRight, Star, AlertCircle, Share2
 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import ProductGallery from '@/components/product/ProductGallery';
@@ -13,6 +13,8 @@ import ZaloContact from '@/components/product/ZaloContact';
 import WholesalePricing from '@/components/product/WholesalePricing';
 import ProductCard from '@/components/ui/ProductCard';
 import ReviewCard from '@/components/ui/ReviewCard';
+import ShareProductsButton from '@/components/product/ShareProductsButton';
+import { useProductSelection } from '@/hooks/useProductSelection';
 import { 
   getProductBySlug, getProductBrand, getProductCategory, 
   getRelatedProducts, getStockStatus, formatPrice 
@@ -28,6 +30,8 @@ const ProductDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [relatedProducts, setRelatedProducts] = useState<any[]>([]);
   const [productReviews, setProductReviews] = useState<any[]>([]);
+  const [selectionMode, setSelectionMode] = useState(false);
+  const { isSelected, toggleSelection } = useProductSelection();
   
   useEffect(() => {
     // Scroll to top when navigating to a new product
@@ -74,6 +78,26 @@ const ProductDetail = () => {
   
   // Current full URL for sharing
   const currentUrl = `${window.location.origin}${location.pathname}`;
+
+  const handleAddToSelection = () => {
+    if (product) {
+      const productToAdd = {
+        id: product.id,
+        name: product.name,
+        slug: product.slug,
+        price: product.price,
+        discount: product.discount,
+        discountedPrice: getDiscountedPrice(),
+        images: product.images
+      };
+      
+      toggleSelection(productToAdd);
+    }
+  };
+  
+  const toggleRelatedProductSelection = () => {
+    setSelectionMode(!selectionMode);
+  };
   
   if (isLoading) {
     return (
@@ -156,7 +180,24 @@ const ProductDetail = () => {
             
             {/* Product Info */}
             <div>
-              <h1 className="text-2xl font-bold mb-2">{product.name}</h1>
+              <div className="flex justify-between items-start mb-2">
+                <h1 className="text-2xl font-bold">{product.name}</h1>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="flex items-center gap-2"
+                  onClick={handleAddToSelection}
+                >
+                  {isSelected({ id: product.id }) ? (
+                    <>Đã thêm vào danh sách</>
+                  ) : (
+                    <>
+                      <Share2 className="h-4 w-4" />
+                      Thêm vào danh sách
+                    </>
+                  )}
+                </Button>
+              </div>
               
               <div className="flex items-center gap-4 mb-4">
                 <div className="text-sm text-muted-foreground">Mã: <span className="font-medium text-foreground">{product.sku}</span></div>
@@ -325,19 +366,37 @@ const ProductDetail = () => {
           {/* Related Products */}
           {relatedProducts.length > 0 && (
             <div className="mt-12">
-              <h2 className="text-xl font-bold mb-6">Sản phẩm liên quan</h2>
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-bold">Sản phẩm liên quan</h2>
+                {relatedProducts.length > 1 && (
+                  <Button 
+                    variant={selectionMode ? "default" : "outline"} 
+                    size="sm"
+                    onClick={toggleRelatedProductSelection}
+                    className="flex items-center gap-2"
+                  >
+                    <Share2 className="h-4 w-4" />
+                    <span>{selectionMode ? 'Hủy chọn' : 'Chọn sản phẩm'}</span>
+                  </Button>
+                )}
+              </div>
+              
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {relatedProducts.map((relatedProduct, index) => (
                   <ProductCard 
                     key={relatedProduct.id}
                     {...relatedProduct}
                     index={index}
+                    selectable={selectionMode}
                   />
                 ))}
               </div>
             </div>
           )}
         </div>
+        
+        {/* Share Products Button */}
+        <ShareProductsButton />
       </main>
       
       <Footer />

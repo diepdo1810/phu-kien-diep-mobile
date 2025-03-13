@@ -1,11 +1,13 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Filter, SlidersHorizontal, GridIcon, List, ChevronDown } from 'lucide-react';
+import { Filter, SlidersHorizontal, GridIcon, List, ChevronDown, Share2 } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import ProductCard from '@/components/ui/ProductCard';
 import FilterSidebar from '@/components/ui/FilterSidebar';
+import ShareProductsButton from '@/components/product/ShareProductsButton';
+import { Button } from '@/components/ui/button';
 import { products, categories, brands } from '@/lib/data';
 
 interface FilterState {
@@ -26,6 +28,7 @@ const Products = () => {
   });
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [sortOption, setSortOption] = useState('featured');
+  const [selectionMode, setSelectionMode] = useState(false);
 
   // Get the category if categorySlug is provided
   const category = categorySlug
@@ -121,6 +124,10 @@ const Products = () => {
     setViewMode(mode);
   };
 
+  const toggleSelectionMode = () => {
+    setSelectionMode(!selectionMode);
+  };
+
   // Count active filters (excluding default price range)
   const activeFilterCount = 
     (activeFilters.brands.length > 0 ? 1 : 0) + 
@@ -159,11 +166,11 @@ const Products = () => {
             <div className="flex-1">
               {/* Actions Bar */}
               <div className="flex flex-wrap justify-between items-center mb-6 gap-4">
-                <div className="flex items-center">
+                <div className="flex items-center gap-2">
                   {/* Mobile Filter Button */}
                   <button
                     onClick={toggleFilter}
-                    className="lg:hidden flex items-center bg-white border rounded-lg py-2 px-4 text-sm font-medium hover:bg-secondary transition-colors mr-2"
+                    className="lg:hidden flex items-center bg-white border rounded-lg py-2 px-4 text-sm font-medium hover:bg-secondary transition-colors"
                   >
                     <Filter className="h-4 w-4 mr-2" />
                     <span>Bộ lọc</span>
@@ -173,6 +180,19 @@ const Products = () => {
                       </span>
                     )}
                   </button>
+
+                  {/* Selection Mode Toggle */}
+                  <Button 
+                    variant={selectionMode ? "default" : "outline"} 
+                    size="sm"
+                    onClick={toggleSelectionMode}
+                    className="flex items-center gap-2"
+                  >
+                    <Share2 className="h-4 w-4" />
+                    <span className="hidden sm:inline">
+                      {selectionMode ? 'Hủy chọn' : 'Chọn sản phẩm'}
+                    </span>
+                  </Button>
 
                   {/* View Mode */}
                   <div className="hidden sm:flex items-center border rounded-lg">
@@ -255,6 +275,7 @@ const Products = () => {
                       key={product.id} 
                       {...product} 
                       index={index}
+                      selectable={selectionMode}
                     />
                   ))}
                 </div>
@@ -278,6 +299,9 @@ const Products = () => {
           onFilterChange={handleFilterChange}
           className="lg:hidden"
         />
+        
+        {/* Share Products Button */}
+        <ShareProductsButton />
       </main>
 
       <Footer />

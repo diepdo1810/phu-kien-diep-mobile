@@ -2,6 +2,8 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Star } from 'lucide-react';
+import { Checkbox } from "@/components/ui/checkbox";
+import { useProductSelection } from '@/hooks/useProductSelection';
 
 interface ProductCardProps {
   id: number;
@@ -15,6 +17,7 @@ interface ProductCardProps {
   reviewCount: number;
   featured?: boolean;
   index?: number;
+  selectable?: boolean;
 }
 
 const formatPrice = (price: number) => {
@@ -37,9 +40,11 @@ const ProductCard = ({
   reviewCount,
   featured = false,
   index = 0,
+  selectable = false,
 }: ProductCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { isSelected, toggleSelection } = useProductSelection();
 
   const animationDelay = `${index * 100}ms`;
 
@@ -54,6 +59,23 @@ const ProductCard = ({
   };
 
   const discountedPrice = price - (price * discount) / 100;
+
+  const handleCheckboxClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const product = {
+      id,
+      name,
+      slug,
+      price,
+      discount,
+      discountedPrice,
+      images
+    };
+    
+    toggleSelection(product);
+  };
 
   return (
     <Link
@@ -81,6 +103,18 @@ const ProductCard = ({
       {featured && (
         <div className="absolute top-3 right-3 z-10 bg-primary text-white text-xs font-medium px-2.5 py-1 rounded">
           Nổi bật
+        </div>
+      )}
+      
+      {selectable && (
+        <div 
+          className="absolute top-3 right-3 z-10 bg-white rounded-full p-1 shadow-sm"
+          onClick={handleCheckboxClick}
+        >
+          <Checkbox 
+            checked={isSelected({ id })} 
+            className="h-5 w-5"
+          />
         </div>
       )}
 
