@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import OrderForm from '@/components/order/OrderForm';
 import OrderSummary from '@/components/order/OrderSummary';
 import Footer from '@/components/layout/Footer';
