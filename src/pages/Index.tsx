@@ -1,6 +1,5 @@
-
 import { useState } from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Newspaper } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -9,11 +8,13 @@ import ProductCard from '../components/ui/ProductCard';
 import ReviewCard from '../components/ui/ReviewCard';
 import ProductStatistics from '../components/ui/ProductStatistics';
 import { categories, products, reviews } from '@/lib/data';
+import { getLatestArticles } from '@/lib/news-data';
 
 const Index = () => {
   const featuredCategories = categories.slice(0, 4);
   const featuredProducts = products.filter(product => product.featured).slice(0, 8);
   const featuredReviews = reviews.slice(0, 3);
+  const latestNews = getLatestArticles(3);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -100,8 +101,67 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Latest News Section */}
       <section className="py-16 px-4 bg-gray-50">
+        <div className="container mx-auto">
+          <div className="flex justify-between items-center mb-8">
+            <div className="flex items-center gap-2">
+              <Newspaper className="h-6 w-6 text-primary" />
+              <h2 className="text-2xl md:text-3xl font-bold">Tin tức mới nhất</h2>
+            </div>
+            <Link 
+              to="/news" 
+              className="text-primary flex items-center hover:underline font-medium"
+            >
+              Xem tất cả
+              <ChevronRight className="h-4 w-4 ml-1" />
+            </Link>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {latestNews.map((article, index) => (
+              <Link to={`/news/${article.slug}`} key={article.id}>
+                <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow group">
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={article.imageUrl} 
+                      alt={article.title} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-0 right-0 bg-primary text-white text-xs font-medium px-2 py-1 m-2 rounded">
+                      {categories.find(c => c.id === article.category)?.name}
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-semibold text-lg mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                      {article.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm mb-3 line-clamp-2">
+                      {article.summary}
+                    </p>
+                    <div className="flex justify-between items-center text-xs text-muted-foreground">
+                      <span>{article.publishDate}</span>
+                      <span>{article.viewCount} lượt xem</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          
+          <div className="text-center mt-8">
+            <Link
+              to="/news"
+              className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-2 text-sm font-medium text-white hover:bg-primary/90 transition-colors"
+            >
+              Xem thêm tin tức
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-16 px-4 bg-white">
         <div className="container mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">Khách hàng nói gì về chúng tôi</h2>
           
