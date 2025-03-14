@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
 import CategoryCard from '../components/ui/CategoryCard';
 import ProductCard from '../components/ui/ProductCard';
 import ReviewCard from '../components/ui/ReviewCard';
@@ -15,8 +17,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Navbar />
+      
       {/* Hero Banner */}
-      <section className="relative bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+      <section className="relative bg-gradient-to-r from-blue-600 to-blue-700 text-white pt-16">
         <div className="container mx-auto px-4 py-20 md:py-32 flex flex-col items-center text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-in appear-first">
             Phụ kiện điện thoại <br className="hidden md:block" />
@@ -124,6 +128,8 @@ const Index = () => {
           </Link>
         </div>
       </section>
+      
+      <Footer />
 
       <style>
         {`

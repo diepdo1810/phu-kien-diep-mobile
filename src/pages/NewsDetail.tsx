@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft, Calendar, User, Eye, Tag, BookOpen } from 'lucide-react';
@@ -6,6 +5,8 @@ import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
 import ProductShare from '@/components/product/ProductShare';
 import {
   categories,
@@ -146,7 +147,6 @@ const NewsDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulating data fetching
     const timer = setTimeout(() => {
       if (slug) {
         const foundArticle = getNewsArticleBySlug(slug);
@@ -161,21 +161,20 @@ const NewsDetail = () => {
     return () => clearTimeout(timer);
   }, [slug]);
 
-  // When the article isn't found
   useEffect(() => {
     if (!isLoading && !article) {
       navigate('/news', { replace: true });
     }
   }, [isLoading, article, navigate]);
 
-  // Scroll to top when article changes
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container py-8">
+      <Navbar />
+      <div className="container py-8 pt-20">
         <Button 
           variant="ghost" 
           size="sm" 
@@ -186,7 +185,6 @@ const NewsDetail = () => {
         </Button>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Main Content */}
           <div className="flex-1">
             {isLoading || !article ? (
               <ArticleSkeleton />
@@ -249,13 +247,11 @@ const NewsDetail = () => {
                   />
                 </div>
 
-                {/* Related Articles */}
                 <RelatedArticlesSection articles={relatedArticles} loading={isLoading} />
               </>
             )}
           </div>
 
-          {/* Sidebar */}
           <div className="lg:w-80 shrink-0">
             <div className="lg:sticky lg:top-20 space-y-8">
               <div className="bg-card rounded-lg border p-5">
@@ -286,6 +282,7 @@ const NewsDetail = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
