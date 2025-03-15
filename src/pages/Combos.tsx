@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Package, Filter, ChevronRight } from 'lucide-react';
+import { Package, Filter, ChevronRight, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
