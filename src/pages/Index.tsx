@@ -129,7 +129,7 @@ const Index = () => {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute top-0 right-0 bg-primary text-white text-xs font-medium px-2 py-1 m-2 rounded">
-                      {categories.find(c => c.id === article.category)?.name}
+                      {categories.find(c => c.id === Number(article.category))?.name}
                     </div>
                   </div>
                   <div className="p-4">
