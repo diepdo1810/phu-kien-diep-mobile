@@ -76,3 +76,24 @@ export const getBestSellingProducts = (limit = 4) => {
     .sort((a, b) => (b.salesCount || 0) - (a.salesCount || 0))
     .slice(0, limit);
 };
+
+// New function for product search based on user query
+export const searchProducts = (query: string) => {
+  const searchTerms = query.toLowerCase().split(' ');
+  
+  // Filter products that match any of the search terms
+  return products.filter(product => {
+    const name = product.name.toLowerCase();
+    const description = product.description.toLowerCase();
+    const categoryName = categories.find(c => c.id === product.categoryId)?.name.toLowerCase() || '';
+    const brandName = brands.find(b => b.id === product.brandId)?.name.toLowerCase() || '';
+    
+    // Check if any search term is found in product details
+    return searchTerms.some(term => 
+      name.includes(term) || 
+      description.includes(term) || 
+      categoryName.includes(term) || 
+      brandName.includes(term)
+    );
+  });
+};

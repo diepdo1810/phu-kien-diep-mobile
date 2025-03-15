@@ -18,6 +18,8 @@ import NewsDetail from "./pages/NewsDetail";
 import Order from "./pages/Order";
 import NotFound from "./pages/NotFound";
 import Wholesale from "./pages/Wholesale";
+import Chatbot from "./components/chatbot/Chatbot";
+import ChatbotAdmin from "./components/chatbot/ChatbotAdmin";
 
 const queryClient = new QueryClient();
 
@@ -42,9 +44,11 @@ const App = () => (
               <Route path="/news/:slug" element={<NewsDetail />} />
               <Route path="/order" element={<Order />} />
               <Route path="/wholesale" element={<Wholesale />} />
+              <Route path="/admin/chatbot" element={<ChatbotAdmin />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
+            <Chatbot />
           </BrowserRouter>
         </ProductSelectionProvider>
       </HelmetProvider>
