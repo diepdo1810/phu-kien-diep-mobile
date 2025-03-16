@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
+import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Form,
   FormControl,
@@ -34,6 +35,7 @@ type FormValues = z.infer<typeof formSchema>;
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const isMobile = useIsMobile();
   
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -75,11 +77,11 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="bg-card rounded-lg p-6 shadow-sm">
-      <h3 className="text-xl font-semibold mb-6">Gửi Thông Tin Liên Hệ</h3>
+    <div className="bg-card rounded-lg p-4 sm:p-6 shadow-sm">
+      <h3 className="text-xl font-semibold mb-4 sm:mb-6">Gửi Thông Tin Liên Hệ</h3>
       
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
           <FormField
             control={form.control}
             name="name"
@@ -94,7 +96,7 @@ const ContactForm = () => {
             )}
           />
           
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2">
             <FormField
               control={form.control}
               name="phone"
@@ -133,7 +135,7 @@ const ContactForm = () => {
                 <FormControl>
                   <Textarea 
                     placeholder="Nhập nội dung bạn muốn liên hệ" 
-                    className="min-h-[120px]" 
+                    className="min-h-[100px] sm:min-h-[120px]" 
                     {...field} 
                   />
                 </FormControl>
@@ -146,7 +148,7 @@ const ContactForm = () => {
             control={form.control}
             name="wholesaleQuote"
             render={({ field }) => (
-              <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+              <FormItem className="flex flex-row items-start space-x-2 sm:space-x-3 space-y-0">
                 <FormControl>
                   <Checkbox
                     checked={field.value}
@@ -154,8 +156,8 @@ const ContactForm = () => {
                   />
                 </FormControl>
                 <div className="space-y-1 leading-none">
-                  <FormLabel>Tôi muốn nhận báo giá sỉ</FormLabel>
-                  <FormDescription>
+                  <FormLabel className="text-sm sm:text-base">Tôi muốn nhận báo giá sỉ</FormLabel>
+                  <FormDescription className="text-xs sm:text-sm">
                     Chúng tôi sẽ gửi báo giá đến email của bạn
                   </FormDescription>
                 </div>
@@ -167,6 +169,7 @@ const ContactForm = () => {
             type="submit" 
             className="w-full" 
             disabled={isSubmitting}
+            size={isMobile ? "sm" : "default"}
           >
             {isSubmitting ? (
               <>
