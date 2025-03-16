@@ -11,6 +11,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { Key, KeyRound, Settings, MessageSquare } from 'lucide-react';
+import { Label } from '@/components/ui/label';
 
 const apiConfigSchema = z.object({
   apiKey: z.string().min(5, {
@@ -100,7 +101,7 @@ const ChatbotAdmin = () => {
             <form onSubmit={handleLogin}>
               <div className="grid gap-4">
                 <div className="grid gap-2">
-                  <FormLabel htmlFor="username">Tên đăng nhập</FormLabel>
+                  <Label htmlFor="username">Tên đăng nhập</Label>
                   <Input
                     id="username"
                     placeholder="admin"
@@ -110,7 +111,7 @@ const ChatbotAdmin = () => {
                   />
                 </div>
                 <div className="grid gap-2">
-                  <FormLabel htmlFor="password">Mật khẩu</FormLabel>
+                  <Label htmlFor="password">Mật khẩu</Label>
                   <Input
                     id="password"
                     type="password"
