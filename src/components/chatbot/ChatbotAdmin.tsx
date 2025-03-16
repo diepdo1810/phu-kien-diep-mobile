@@ -19,8 +19,8 @@ const apiConfigSchema = z.object({
   model: z.string().min(1, {
     message: "Vui lòng chọn model",
   }),
-  maxTokens: z.number().min(100).max(4000),
-  temperature: z.number().min(0).max(1),
+  maxTokens: z.coerce.number().min(100).max(4000),
+  temperature: z.coerce.number().min(0).max(1),
 });
 
 const systemPromptSchema = z.object({
@@ -29,7 +29,7 @@ const systemPromptSchema = z.object({
   }),
 });
 
-export const ChatbotAdmin = () => {
+const ChatbotAdmin = () => {
   const { toast } = useToast();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
@@ -211,7 +211,12 @@ export const ChatbotAdmin = () => {
                         <FormItem>
                           <FormLabel>Max Tokens</FormLabel>
                           <FormControl>
-                            <Input type="number" {...field} onChange={(e) => field.onChange(parseInt(e.target.value))} />
+                            <Input 
+                              type="number" 
+                              {...field}
+                              value={field.value}
+                              onChange={(e) => field.onChange(parseInt(e.target.value || "0", 10))}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -230,7 +235,8 @@ export const ChatbotAdmin = () => {
                               min="0" 
                               max="1" 
                               step="0.1" 
-                              {...field} 
+                              {...field}
+                              value={field.value}
                               onChange={(e) => field.onChange(parseFloat(e.target.value))}
                             />
                           </FormControl>
