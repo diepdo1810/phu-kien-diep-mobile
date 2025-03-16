@@ -1,6 +1,7 @@
+
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, Menu, X, ShoppingBag, Phone } from 'lucide-react';
+import { Search, Menu, X, ShoppingBag, Phone, ShoppingCart, Newspaper, Package } from 'lucide-react';
 import { storeInfo } from '@/lib/data';
 
 const Navbar = () => {
@@ -12,7 +13,10 @@ const Navbar = () => {
   const routes = [
     { name: 'Trang chủ', path: '/' },
     { name: 'Sản phẩm', path: '/products' },
+    { name: 'Combo sản phẩm', path: '/combos', icon: <Package className="h-4 w-4" /> },
+    { name: 'Tin tức', path: '/news', icon: <Newspaper className="h-4 w-4" /> },
     { name: 'Chứng nhận', path: '/certifications' },
+    { name: 'Bán sỉ', path: '/wholesale' },
     { name: 'Liên hệ', path: '/contact' },
   ];
 
@@ -55,7 +59,10 @@ const Navbar = () => {
                 to={route.path} 
                 className={`text-sm font-medium transition-colors hover:text-primary relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left ${location.pathname === route.path ? 'text-primary after:scale-x-100' : 'text-foreground'}`}
               >
-                {route.name}
+                <span className="flex items-center">
+                  {route.icon && <span className="mr-1">{route.icon}</span>}
+                  {route.name}
+                </span>
               </Link>
             ))}
           </nav>
@@ -71,6 +78,11 @@ const Navbar = () => {
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             </form>
+
+            <Link to="/order" className="flex items-center rounded-full bg-secondary px-4 py-2 text-sm font-medium text-foreground hover:bg-secondary/90 transition-colors">
+              <ShoppingCart className="mr-2 h-4 w-4" />
+              Đặt hàng
+            </Link>
 
             <a href={`tel:${storeInfo.phone.replace(/\D/g, '')}`} className="flex items-center rounded-full bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary/90 transition-colors">
               <Phone className="mr-2 h-4 w-4" />
@@ -106,11 +118,20 @@ const Navbar = () => {
               <Link
                 key={route.path}
                 to={route.path}
-                className={`block py-2 text-base font-medium hover:text-primary transition-colors ${location.pathname === route.path ? 'text-primary' : 'text-foreground'}`}
+                className={`flex items-center py-2 text-base font-medium hover:text-primary transition-colors ${location.pathname === route.path ? 'text-primary' : 'text-foreground'}`}
               >
+                {route.icon && <span className="mr-2">{route.icon}</span>}
                 {route.name}
               </Link>
             ))}
+
+            <Link
+              to="/order"
+              className="flex items-center py-2 text-base font-medium hover:text-primary transition-colors"
+            >
+              <ShoppingCart className="mr-2 h-4 w-4" />
+              Đặt hàng
+            </Link>
 
             <a href={`tel:${storeInfo.phone.replace(/\D/g, '')}`} className="flex items-center justify-center w-full mt-4 rounded-full bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary/90 transition-colors">
               <Phone className="mr-2 h-4 w-4" />
