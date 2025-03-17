@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -120,5 +119,21 @@
   
   .icon-shift {
     @apply transition-transform duration-300 group-hover:translate-x-1;
+  }
+  
+  /* Safe area insets for mobile devices */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0.5rem);
+  }
+  
+  .mb-safe {
+    margin-bottom: env(safe-area-inset-bottom, 0.5rem);
+  }
+  
+  /* Add bottom padding to body on mobile to account for fixed menu */
+  @media (max-width: 768px) {
+    body {
+      padding-bottom: 4.5rem;
+    }
   }
 }
