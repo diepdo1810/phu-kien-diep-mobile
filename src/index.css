@@ -53,6 +53,16 @@
   }
 }
 
+@layer components {
+  .container-custom {
+    @apply container mx-auto px-4 md:px-6 max-w-full md:max-w-[768px] lg:max-w-[1024px] laptop:max-w-[1280px] xl:max-w-[1536px];
+  }
+  
+  .section-container {
+    @apply container mx-auto px-4 md:px-6 max-w-full md:max-w-[768px] lg:max-w-[1024px] laptop:max-w-[1280px] xl:max-w-[1536px];
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -71,7 +81,7 @@
   }
   
   .section-padding {
-    @apply py-12 md:py-20;
+    @apply py-8 md:py-12 lg:py-16 laptop:py-20;
   }
   
   .animate-in {

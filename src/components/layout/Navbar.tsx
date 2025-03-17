@@ -46,13 +46,13 @@ const Navbar = () => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 shadow-sm backdrop-blur-md' : 'bg-transparent'}`}>
-      <div className="container mx-auto px-4 py-4">
+      <div className="section-container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center">
             <span className="text-xl font-bold text-primary">{storeInfo.name}</span>
           </Link>
 
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 laptop:space-x-8">
             {routes.map((route) => (
               <Link 
                 key={route.path} 
@@ -72,7 +72,7 @@ const Navbar = () => {
               <input
                 type="text"
                 placeholder="Tìm kiếm sản phẩm..."
-                className="w-64 py-2 px-4 pl-10 text-sm bg-secondary rounded-full transition-all focus:outline-none focus:ring-1 focus:ring-primary"
+                className="w-48 lg:w-56 laptop:w-64 py-2 px-4 pl-10 text-sm bg-secondary rounded-full transition-all focus:outline-none focus:ring-1 focus:ring-primary"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />

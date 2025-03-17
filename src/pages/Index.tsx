@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { ChevronRight, Newspaper } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -22,12 +23,12 @@ const Index = () => {
       
       {/* Hero Banner */}
       <section className="relative bg-gradient-to-r from-blue-600 to-blue-700 text-white pt-16">
-        <div className="container mx-auto px-4 py-20 md:py-32 flex flex-col items-center text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-in appear-first">
+        <div className="section-container py-12 sm:py-16 md:py-20 lg:py-24 laptop:py-28 xl:py-32 flex flex-col items-center text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 animate-in appear-first">
             Phụ kiện điện thoại <br className="hidden md:block" />
             <span className="text-yellow-300">chính hãng</span>
           </h1>
-          <p className="text-lg md:text-xl max-w-xl mb-8 animate-in appear-second">
+          <p className="text-base sm:text-lg md:text-xl max-w-xl mb-6 sm:mb-8 animate-in appear-second">
             Kho phụ kiện đa dạng, chất lượng cao với giá cả cạnh tranh nhất thị trường
           </p>
           <div className="flex flex-col sm:flex-row gap-4 animate-in appear-third">
@@ -51,17 +52,17 @@ const Index = () => {
       </section>
 
       {/* Product Statistics Section */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto">
+      <section className="py-12 sm:py-16">
+        <div className="section-container">
           <ProductStatistics />
         </div>
       </section>
 
       {/* Categories Section */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold">Danh mục sản phẩm</h2>
+      <section className="py-12 sm:py-16">
+        <div className="section-container">
+          <div className="flex justify-between items-center mb-6 sm:mb-8">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold">Danh mục sản phẩm</h2>
             <Link 
               to="/products" 
               className="text-primary flex items-center hover:underline font-medium"
@@ -71,7 +72,7 @@ const Index = () => {
             </Link>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {featuredCategories.map((category, index) => (
               <CategoryCard key={category.id} {...category} index={index} />
             ))}
@@ -80,10 +81,10 @@ const Index = () => {
       </section>
 
       {/* Featured Products */}
-      <section className="py-16 px-4 bg-white">
-        <div className="container mx-auto">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold">Sản phẩm nổi bật</h2>
+      <section className="py-12 sm:py-16 bg-white">
+        <div className="section-container">
+          <div className="flex justify-between items-center mb-6 sm:mb-8">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold">Sản phẩm nổi bật</h2>
             <Link 
               to="/products" 
               className="text-primary flex items-center hover:underline font-medium"
@@ -93,7 +94,7 @@ const Index = () => {
             </Link>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
             {featuredProducts.map((product, index) => (
               <ProductCard key={product.id} {...product} index={index} />
             ))}
@@ -102,12 +103,12 @@ const Index = () => {
       </section>
 
       {/* Latest News Section */}
-      <section className="py-16 px-4 bg-gray-50">
-        <div className="container mx-auto">
-          <div className="flex justify-between items-center mb-8">
+      <section className="py-12 sm:py-16 bg-gray-50">
+        <div className="section-container">
+          <div className="flex justify-between items-center mb-6 sm:mb-8">
             <div className="flex items-center gap-2">
-              <Newspaper className="h-6 w-6 text-primary" />
-              <h2 className="text-2xl md:text-3xl font-bold">Tin tức mới nhất</h2>
+              <Newspaper className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold">Tin tức mới nhất</h2>
             </div>
             <Link 
               to="/news" 
@@ -118,7 +119,7 @@ const Index = () => {
             </Link>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             {latestNews.map((article, index) => (
               <Link to={`/news/${article.slug}`} key={article.id}>
                 <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow group">
@@ -149,7 +150,7 @@ const Index = () => {
             ))}
           </div>
           
-          <div className="text-center mt-8">
+          <div className="text-center mt-6 sm:mt-8">
             <Link
               to="/news"
               className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-2 text-sm font-medium text-white hover:bg-primary/90 transition-colors"
@@ -161,11 +162,11 @@ const Index = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-16 px-4 bg-white">
-        <div className="container mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">Khách hàng nói gì về chúng tôi</h2>
+      <section className="py-12 sm:py-16 bg-white">
+        <div className="section-container">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-8 sm:mb-12">Khách hàng nói gì về chúng tôi</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {featuredReviews.map((review, index) => (
               <ReviewCard key={review.id} {...review} index={index} />
             ))}
@@ -174,15 +175,15 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-4 bg-primary text-white">
-        <div className="container mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">Bạn cần tư vấn thêm?</h2>
-          <p className="max-w-2xl mx-auto mb-8 text-lg">
+      <section className="py-12 sm:py-16 bg-primary text-white">
+        <div className="section-container text-center">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6">Bạn cần tư vấn thêm?</h2>
+          <p className="max-w-2xl mx-auto mb-6 sm:mb-8 text-base sm:text-lg">
             Đội ngũ chuyên viên của chúng tôi luôn sẵn sàng hỗ trợ bạn mọi lúc mọi nơi
           </p>
           <Link
             to="/contact"
-            className="bg-white text-primary px-8 py-3 rounded-full font-medium hover:bg-blue-50 inline-block transition-colors"
+            className="bg-white text-primary px-6 sm:px-8 py-2 sm:py-3 rounded-full font-medium hover:bg-blue-50 inline-block transition-colors"
           >
             Liên hệ ngay
           </Link>
