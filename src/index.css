@@ -112,4 +112,13 @@
   .loading-shimmer {
     @apply bg-gradient-to-r from-transparent via-white/10 to-transparent bg-[length:200%_100%] animate-shimmer;
   }
+  
+  /* Card hover animations */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  .icon-shift {
+    @apply transition-transform duration-300 group-hover:translate-x-1;
+  }
 }
