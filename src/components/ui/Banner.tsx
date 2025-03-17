@@ -42,7 +42,7 @@ const Banner = () => {
   };
 
   return (
-    <div className="relative h-[400px] sm:h-[450px] md:h-[500px] laptop:h-[550px] xl:h-[600px] overflow-hidden bg-secondary mx-auto">
+    <div className="relative h-[400px] sm:h-[450px] md:h-[500px] lg:h-[550px] xl:h-[600px] overflow-hidden bg-secondary mx-auto">
       {/* Loading Skeleton */}
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-muted animate-pulse">
@@ -61,11 +61,11 @@ const Banner = () => {
             style={{ backgroundColor: banner.backgroundColor }}
           >
             {/* Text Content */}
-            <div className="w-full md:w-1/2 p-4 sm:p-6 md:p-8 laptop:p-12 xl:p-16 flex flex-col justify-center">
+            <div className="w-full md:w-1/2 p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16 flex flex-col justify-center">
               <span className="inline-block mb-2 text-xs sm:text-sm md:text-base text-primary font-medium px-3 py-1 bg-primary/10 rounded-full">
                 Khuyến mãi đặc biệt
               </span>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl laptop:text-5xl font-bold mb-2 sm:mb-4 tracking-tight">{banner.title}</h1>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4 tracking-tight">{banner.title}</h1>
               <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 md:mb-8 max-w-md">{banner.subtitle}</p>
               <Link
                 to={banner.buttonLink}
