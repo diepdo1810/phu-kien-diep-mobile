@@ -23,9 +23,6 @@ export default {
 			}
 		},
 		extend: {
-			screens: {
-				'laptop': '1366px',
-			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
