@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useCallback, memo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Package, Zap, Info, FileText, ChevronUp, Phone, Smartphone } from 'lucide-react';
+import { ShoppingCart, Search, Package, Home, ChevronDown, Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
 import {
@@ -20,6 +20,24 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
+} from "@/components/ui/navigation-menu";
+import {
+  HoverCard,
+  HoverCardTrigger,
+  HoverCardContent,
+} from "@/components/ui/hover-card";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "@/components/ui/popover";
 
 type MenuItemProps = {
   icon: React.ReactNode;
@@ -38,7 +56,7 @@ const MenuItem = memo(({ icon, label, path, isActive, isHome = false, onClick, c
         {children}
         <span className={cn(
           "text-[10px] mt-1 font-medium",
-          isActive ? "text-[#FFD700]" : "text-gray-700"
+          isActive ? "text-white" : "text-gray-700"
         )}>
           {label}
         </span>
@@ -56,13 +74,13 @@ const MenuItem = memo(({ icon, label, path, isActive, isHome = false, onClick, c
       <div className={cn(
         "flex items-center justify-center w-6 h-6",
         isHome && "w-12 h-12 bg-[#FFD700] rounded-full -mt-5 shadow-md transition-transform active:scale-95",
-        isActive && !isHome && "text-[#FFD700]"
+        isActive && !isHome && "text-white"
       )}>
         {icon}
       </div>
       <span className={cn(
         "text-[10px] mt-1 font-medium",
-        isActive ? "text-[#FFD700]" : "text-gray-700"
+        isActive ? "text-white" : "text-gray-700"
       )}>
         {label}
       </span>
@@ -128,18 +146,43 @@ const MobileMenu = () => {
       }}
     >
       <div className="flex items-center justify-between px-2 py-2">
-        <MenuItem
-          icon={<Smartphone className="w-5 h-5" />}
-          label="SẢN PHẨM"
-          path="/products"
-          isActive={location.pathname.includes('/products')}
-        />
+        <Popover>
+          <PopoverTrigger asChild>
+            <div className="flex-1 flex flex-col items-center cursor-pointer">
+              <div className={cn(
+                "flex items-center justify-center w-6 h-6",
+                location.pathname.includes('/products') || location.pathname.includes('/combos') ? "text-white" : ""
+              )}>
+                <Package className="w-5 h-5" />
+              </div>
+              <span className={cn(
+                "text-[10px] mt-1 font-medium flex items-center",
+                (location.pathname.includes('/products') || location.pathname.includes('/combos')) ? "text-white" : "text-gray-700"
+              )}>
+                SẢN PHẨM
+                <ChevronDown className="w-3 h-3 ml-0.5" />
+              </span>
+            </div>
+          </PopoverTrigger>
+          <PopoverContent className="p-0 w-screen max-w-screen" align="center">
+            <div className="grid grid-cols-3 gap-1 p-3">
+              <Link to="/products" className="flex flex-col items-center p-2 hover:bg-gray-100 rounded">
+                <Package className="w-6 h-6 mb-1" />
+                <span className="text-xs font-medium">Sản phẩm</span>
+              </Link>
+              <Link to="/combos" className="flex flex-col items-center p-2 hover:bg-gray-100 rounded">
+                <ShoppingCart className="w-6 h-6 mb-1" />
+                <span className="text-xs font-medium">Combo sản phẩm</span>
+              </Link>
+            </div>
+          </PopoverContent>
+        </Popover>
         
         <MenuItem
-          icon={<Zap className="w-5 h-5" />}
-          label="FLASH SALE"
-          path="/flash-sale"
-          isActive={location.pathname === '/flash-sale'}
+          icon={<Search className="w-5 h-5" />}
+          label="TÌM KIẾM"
+          path="/search"
+          isActive={location.pathname === '/search'}
         />
         
         <MenuItem
@@ -151,41 +194,18 @@ const MobileMenu = () => {
         />
         
         <MenuItem
-          icon={<Info className="w-5 h-5" />}
-          label="GIỚI THIỆU"
-          path="/about"
-          isActive={location.pathname === '/about'}
+          icon={<ShoppingCart className="w-5 h-5" />}
+          label="ĐẶT HÀNG"
+          path="/order"
+          isActive={location.pathname === '/order'}
         />
         
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <div className="flex-1 flex flex-col items-center cursor-pointer">
-              <div className={cn(
-                "flex items-center justify-center w-6 h-6",
-                location.pathname.includes('/terms') && "text-[#FFD700]"
-              )}>
-                <FileText className="w-5 h-5" />
-              </div>
-              <span className={cn(
-                "text-[10px] mt-1 font-medium",
-                location.pathname.includes('/terms') ? "text-[#FFD700]" : "text-gray-700"
-              )}>
-                QUY ĐỊNH
-              </span>
-            </div>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-56">
-            <DropdownMenuItem asChild>
-              <Link to="/terms/warranty">BẢO HÀNH - ĐỔI TRẢ</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Link to="/terms/ordering">QUY ĐỊNH ĐẶT HÀNG</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Link to="/terms/shipping">THANH TOÁN - GIAO HÀNG</Link>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <MenuItem
+          icon={<Phone className="w-5 h-5" />}
+          label="LIÊN HỆ"
+          path="/contact"
+          isActive={location.pathname === '/contact'}
+        />
       </div>
     </div>
   );

@@ -11,16 +11,14 @@ import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import Combos from "./pages/Combos";
 import ComboDetail from "./pages/ComboDetail";
-import Certifications from "./pages/Certifications";
 import Contact from "./pages/Contact";
-import News from "./pages/News";
-import NewsDetail from "./pages/NewsDetail";
 import Order from "./pages/Order";
 import NotFound from "./pages/NotFound";
 import Wholesale from "./pages/Wholesale";
 import Chatbot from "./components/chatbot/Chatbot";
 import ChatbotAdmin from "./components/chatbot/ChatbotAdmin";
 import MobileMenu from "./components/layout/MobileMenu";
+import Search from "./pages/Search";
 
 const queryClient = new QueryClient();
 
@@ -39,10 +37,8 @@ const App = () => (
               <Route path="/product/:slug" element={<ProductDetail />} />
               <Route path="/combos" element={<Combos />} />
               <Route path="/combos/:slug" element={<ComboDetail />} />
-              <Route path="/certifications" element={<Certifications />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/news" element={<News />} />
-              <Route path="/news/:slug" element={<NewsDetail />} />
+              <Route path="/search" element={<Search />} />
               <Route path="/order" element={<Order />} />
               <Route path="/wholesale" element={<Wholesale />} />
               <Route path="/admin/chatbot" element={<ChatbotAdmin />} />
