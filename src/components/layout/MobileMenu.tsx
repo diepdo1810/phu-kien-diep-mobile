@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useCallback, memo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Package, Zap, Info, FileText, ChevronUp } from 'lucide-react';
+import { Home, Package, Zap, Info, FileText, ChevronUp, Phone, Smartphone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
 import {
@@ -120,7 +120,7 @@ const MobileMenu = () => {
   return (
     <div
       className={cn(
-        "fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-md z-40 transition-transform duration-300 pb-safe",
+        "fixed bottom-0 left-0 right-0 bg-[#FFD700] border-t border-gray-200 shadow-md z-40 transition-transform duration-300 pb-safe",
         !isVisible && "translate-y-full"
       )}
       style={{ 
@@ -128,58 +128,19 @@ const MobileMenu = () => {
       }}
     >
       <div className="flex items-center justify-between px-2 py-2">
-        {(!compactMode || compactMode) && (
-          <Drawer>
-            <DrawerTrigger asChild>
-              <MenuItem
-                icon={<Package className="w-5 h-5" />}
-                label="SẢN PHẨM"
-                isActive={location.pathname.includes('/products')}
-              />
-            </DrawerTrigger>
-            <DrawerContent>
-              <DrawerHeader>
-                <DrawerTitle>Danh mục sản phẩm</DrawerTitle>
-                <DrawerDescription>
-                  Chọn danh mục sản phẩm bạn muốn xem
-                </DrawerDescription>
-              </DrawerHeader>
-              <div className="grid gap-4 p-4">
-                <Link to="/products/thit-tuoi" className="flex items-center p-2 border rounded-md hover:bg-muted">
-                  Thịt tươi
-                </Link>
-                <Link to="/products/hai-san" className="flex items-center p-2 border rounded-md hover:bg-muted">
-                  Hải sản
-                </Link>
-                <Link to="/products/rau-cu" className="flex items-center p-2 border rounded-md hover:bg-muted">
-                  Rau củ
-                </Link>
-                <Link to="/products/trai-cay" className="flex items-center p-2 border rounded-md hover:bg-muted">
-                  Trái cây
-                </Link>
-              </div>
-              <DrawerFooter>
-                <Link to="/products" className="w-full">
-                  <div className="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90">
-                    Xem tất cả sản phẩm
-                  </div>
-                </Link>
-                <DrawerClose className="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md border border-input bg-background px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground">
-                  Đóng
-                </DrawerClose>
-              </DrawerFooter>
-            </DrawerContent>
-          </Drawer>
-        )}
+        <MenuItem
+          icon={<Smartphone className="w-5 h-5" />}
+          label="SẢN PHẨM"
+          path="/products"
+          isActive={location.pathname.includes('/products')}
+        />
         
-        {!compactMode && (
-          <MenuItem
-            icon={<Zap className="w-5 h-5" />}
-            label="FLASH SALE"
-            path="/flash-sale"
-            isActive={location.pathname === '/flash-sale'}
-          />
-        )}
+        <MenuItem
+          icon={<Zap className="w-5 h-5" />}
+          label="FLASH SALE"
+          path="/flash-sale"
+          isActive={location.pathname === '/flash-sale'}
+        />
         
         <MenuItem
           icon={<Home className="w-6 h-6" />}
@@ -189,14 +150,12 @@ const MobileMenu = () => {
           isHome
         />
         
-        {!compactMode && (
-          <MenuItem
-            icon={<Info className="w-5 h-5" />}
-            label="GIỚI THIỆU"
-            path="/about"
-            isActive={location.pathname === '/about'}
-          />
-        )}
+        <MenuItem
+          icon={<Info className="w-5 h-5" />}
+          label="GIỚI THIỆU"
+          path="/about"
+          isActive={location.pathname === '/about'}
+        />
         
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -217,13 +176,13 @@ const MobileMenu = () => {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">
             <DropdownMenuItem asChild>
-              <Link to="/terms/warranty">Bảo hành - Đổi trả</Link>
+              <Link to="/terms/warranty">BẢO HÀNH - ĐỔI TRẢ</Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link to="/terms/ordering">Quy định đặt hàng</Link>
+              <Link to="/terms/ordering">QUY ĐỊNH ĐẶT HÀNG</Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link to="/terms/shipping">Thanh toán - Giao hàng</Link>
+              <Link to="/terms/shipping">THANH TOÁN - GIAO HÀNG</Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
