@@ -20,7 +20,6 @@ import NotFound from "./pages/NotFound";
 import Wholesale from "./pages/Wholesale";
 import Chatbot from "./components/chatbot/Chatbot";
 import ChatbotAdmin from "./components/chatbot/ChatbotAdmin";
-import MobileMenu from "./components/mobile/MobileMenu";
 
 const queryClient = new QueryClient();
 
@@ -50,7 +49,6 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Chatbot />
-            <MobileMenu />
           </BrowserRouter>
         </ProductSelectionProvider>
       </HelmetProvider>
