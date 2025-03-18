@@ -1,38 +1,9 @@
 
 import { useState, useEffect, useCallback, memo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShoppingCart, Search, Package, Home, ChevronDown, Phone } from 'lucide-react';
+import { ShoppingCart, Search, Home, ChevronDown, Phone, Smartphone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
-import {
-  Drawer,
-  DrawerTrigger,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerClose,
-} from "@/components/ui/drawer";
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
-import {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuTrigger,
-  NavigationMenuContent,
-  NavigationMenuLink,
-} from "@/components/ui/navigation-menu";
-import {
-  HoverCard,
-  HoverCardTrigger,
-  HoverCardContent,
-} from "@/components/ui/hover-card";
 import {
   Popover,
   PopoverTrigger,
@@ -153,7 +124,7 @@ const MobileMenu = () => {
                 "flex items-center justify-center w-6 h-6",
                 location.pathname.includes('/products') || location.pathname.includes('/combos') ? "text-white" : ""
               )}>
-                <Package className="w-5 h-5" />
+                <Smartphone className="w-5 h-5" />
               </div>
               <span className={cn(
                 "text-[10px] mt-1 font-medium flex items-center",
@@ -165,9 +136,9 @@ const MobileMenu = () => {
             </div>
           </PopoverTrigger>
           <PopoverContent className="p-0 w-screen max-w-screen" align="center">
-            <div className="grid grid-cols-3 gap-1 p-3">
+            <div className="grid grid-cols-2 gap-1 p-3">
               <Link to="/products" className="flex flex-col items-center p-2 hover:bg-gray-100 rounded">
-                <Package className="w-6 h-6 mb-1" />
+                <Smartphone className="w-6 h-6 mb-1" />
                 <span className="text-xs font-medium">Sản phẩm</span>
               </Link>
               <Link to="/combos" className="flex flex-col items-center p-2 hover:bg-gray-100 rounded">
