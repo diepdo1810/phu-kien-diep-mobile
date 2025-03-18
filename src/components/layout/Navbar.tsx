@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Search, Menu, X, ShoppingBag, Phone, ShoppingCart, Zap, Home, Info, Smartphone } from 'lucide-react';
@@ -24,9 +23,6 @@ const Navbar = () => {
     { name: 'FLASH SALE', path: '/flash-sale', icon: <Zap className="h-4 w-4" /> },
     { name: 'GIỚI THIỆU', path: '/about', icon: <Info className="h-4 w-4" /> },
     { name: 'TRANG CHỦ', path: '/', icon: <Home className="h-4 w-4" /> },
-    { name: 'BẢO HÀNH - ĐỔI TRẢ', path: '/warranty-returns' },
-    { name: 'QUY ĐỊNH ĐẶT HÀNG', path: '/order-policy' },
-    { name: 'THANH TOÁN - GIAO HÀNG', path: '/payment-shipping' },
     { name: 'TIN CÔNG NGHỆ', path: '/tech-news' },
   ];
 
