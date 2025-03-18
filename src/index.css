@@ -112,4 +112,30 @@
   .loading-shimmer {
     @apply bg-gradient-to-r from-transparent via-white/10 to-transparent bg-[length:200%_100%] animate-shimmer;
   }
+  
+  /* Safe area utilities for mobile devices */
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .pr-safe {
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .pl-safe {
+    padding-left: env(safe-area-inset-left, 0px);
+  }
+  .mt-safe {
+    margin-top: env(safe-area-inset-top, 0px);
+  }
+  .mr-safe {
+    margin-right: env(safe-area-inset-right, 0px);
+  }
+  .mb-safe {
+    margin-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .ml-safe {
+    margin-left: env(safe-area-inset-left, 0px);
+  }
 }
