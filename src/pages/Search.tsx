@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { products } from '@/lib/data';
 import ProductCard from '@/components/ui/ProductCard';
 import { Helmet } from 'react-helmet-async';
+import { categories } from '@/lib/data';
 
 const SearchPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -19,11 +20,15 @@ const SearchPage = () => {
       return;
     }
     
-    const results = products.filter(product =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.categories.some(cat => cat.toLowerCase().includes(searchTerm.toLowerCase()))
-    );
+    const results = products.filter(product => {
+      // Get the category name for this product
+      const category = categories.find(cat => cat.id === product.categoryId);
+      const categoryName = category ? category.name.toLowerCase() : '';
+      
+      return product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        categoryName.includes(searchTerm.toLowerCase());
+    });
     
     setSearchResults(results);
   };
@@ -67,7 +72,19 @@ const SearchPage = () => {
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {searchResults.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <ProductCard 
+                  key={product.id}
+                  id={product.id}
+                  name={product.name}
+                  slug={product.slug}
+                  price={product.price}
+                  wholesalePrice={product.wholesalePrice}
+                  discount={product.discount}
+                  images={product.images}
+                  rating={product.rating}
+                  reviewCount={product.reviewCount}
+                  index={product.id}
+                />
               ))}
             </div>
           )}
