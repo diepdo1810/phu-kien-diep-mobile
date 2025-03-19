@@ -21,9 +21,7 @@ const Navbar = () => {
   const routes = [
     { name: 'SẢN PHẨM', path: '/products', icon: <Smartphone className="h-4 w-4" />, hasDropdown: true },
     { name: 'FLASH SALE', path: '/flash-sale', icon: <Zap className="h-4 w-4" /> },
-    { name: 'GIỚI THIỆU', path: '/about', icon: <Info className="h-4 w-4" /> },
     { name: 'TRANG CHỦ', path: '/', icon: <Home className="h-4 w-4" /> },
-    { name: 'TIN CÔNG NGHỆ', path: '/tech-news' },
   ];
 
   const productDropdownItems = [

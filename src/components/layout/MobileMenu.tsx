@@ -1,7 +1,6 @@
-
 import { useState, useEffect, useCallback, memo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShoppingCart, Search, Home, ChevronDown, Phone, Smartphone } from 'lucide-react';
+import { ShoppingCart, Search, Home, ChevronDown, Phone, Smartphone, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
 import {
@@ -68,7 +67,6 @@ const MobileMenu = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [compactMode, setCompactMode] = useState(false);
 
-  // Check window width for compact mode
   useEffect(() => {
     const checkCompactMode = () => {
       setCompactMode(window.innerWidth < 375);
@@ -82,7 +80,6 @@ const MobileMenu = () => {
     };
   }, []);
 
-  // Handle scroll to hide/show menu
   const handleScroll = useCallback(() => {
     const currentScrollY = window.scrollY;
     
@@ -165,17 +162,17 @@ const MobileMenu = () => {
         />
         
         <MenuItem
+          icon={<Zap className="w-5 h-5" />}
+          label="FLASH SALE"
+          path="/flash-sale"
+          isActive={location.pathname === '/flash-sale'}
+        />
+        
+        <MenuItem
           icon={<ShoppingCart className="w-5 h-5" />}
           label="ĐẶT HÀNG"
           path="/order"
           isActive={location.pathname === '/order'}
-        />
-        
-        <MenuItem
-          icon={<Phone className="w-5 h-5" />}
-          label="LIÊN HỆ"
-          path="/contact"
-          isActive={location.pathname === '/contact'}
         />
       </div>
     </div>
